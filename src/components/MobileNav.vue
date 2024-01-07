@@ -1,22 +1,41 @@
 <template>
-    <!-- DESKTOP NAVBAR -->
-    <aside class="w-[25%] bg-[#622C98] border border-[#47106E] h-screen py-[2%] px-[3%] space-y-20">
-        <div class="bg-[#D9D9D9] w-full h-[51px]"></div>
+    <div class="bg-[#622C98] w-full fixed h-full top-0 space-y-10 overflow-y-auto">
+        <div @click="$emit('isNavTrue')" tabindex="0" class="m-6 h-fit cursor-pointer"><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24"><path fill="none" stroke="white" stroke-linecap="round" stroke-width="1.5" d="M4 7h3m13 0h-9m9 10h-3M4 17h9m-9-5h16"/></svg></div>
 
-        <div class="space-y-4"> 
-            <nav v-for="navLink in navLinks">
-                <RouterLink :to="navLink.link" class="focus:outline-none focus:bg-[#4B2473] flex gap-[10px] items-center p-2 rounded-md hover:bg-[#4B2473]" :class="{ 'active' : $route.name === navLink.routeName}">
-                    <div class="text-white" v-html="navLink.icon"></div>
-                    <p class="text-[#D9D9D9] text-lg" :class="{ 'activeLink' : $route.name === navLink.routeName}">{{ navLink.name }}</p>
-                </RouterLink>
-            </nav>
+        <div class="flex flex-col gap-20 h-full relative z-[999]">
+            <div class="space-y-4"> 
+                <nav v-for="navLink in navLinks">
+                    <RouterLink :to="navLink.link" class="w-fit focus:outline-none focus:bg-[#4B2473] flex gap-[10px] items-center p-2 rounded-r-md hover:bg-[#4B2473]" :class="{ 'active' : $route.name === navLink.routeName}">
+                        <div class="text-white" v-html="navLink.icon"></div>
+                        <p class="text-[#D9D9D9] text-lg" :class="{ 'activeLink' : $route.name === navLink.routeName}">{{ navLink.name }}</p>
+                    </RouterLink>
+                </nav>
+            </div>
+            <div>
+                <nav v-for="account in accounts">
+                        <RouterLink  :to="account.link" class="w-fit focus:outline-none focus:bg-[#4B2473] flex gap-[10px] items-center p-2 rounded-r-md hover:bg-[#4B2473]">
+                            <div class="text-white" v-html="account.icon"></div>
+                            <p class="text-[#D9D9D9] text-lg">{{ account.name }}</p>
+                        </RouterLink>
+                </nav>
+            </div>
         </div>
-    </aside>
+
+
+
+        <svg class="absolute top-0 right-0 z-[999]" width="176" height="798" viewBox="0 0 176 798" fill="none" xmlns="http://www.w3.org/2000/svg"><rect x="-1" y="24.3574" width="356" height="776.278" rx="24" transform="rotate(-4.08454 -1 24.3574)" fill="white"/></svg>
+
+        <svg class="absolute top-20 right-20" width="211" height="728" viewBox="0 0 211 728" fill="none" xmlns="http://www.w3.org/2000/svg"><rect x="-1" y="24.3574" width="356" height="707" rx="24" transform="rotate(-4.08454 -1 24.3574)" fill="#3A1560"/></svg>
+
+    </div>
+
+
 </template>
 
 <script>
     import { defineComponent } from 'vue';
     import { RouterLink } from 'vue-router';
+    import store from '@/stores/counter';
     export default defineComponent({
     data() {
         return {
@@ -63,18 +82,32 @@
                     link: '/time-sheet',
                     routeName: 'TimeSheet'
                 }
+            ],
+            accounts: [
+                {
+                    icon: '<svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 24 24"><path fill="#D9D9D9" d="M9.833 11.385q-.472 0-.786-.348q-.314-.349-.247-.825l.306-2.393q.142-1.06.973-1.747q.83-.687 1.921-.687t1.921.687q.83.688.973 1.747l.306 2.393q.067.476-.247.825q-.314.348-.786.348zm-.058-1h4.45l-.325-2.4q-.1-.7-.637-1.15T12 6.385q-.725 0-1.262.45t-.638 1.15zM5 18.615V16.97q0-.619.36-1.158q.361-.54.97-.838q1.416-.679 2.833-1.018q1.418-.34 2.837-.34q1.42 0 2.837.34q1.417.34 2.832 1.018q.61.298.97.838q.361.539.361 1.158v1.646zm1-1h12v-.646q0-.332-.214-.625q-.215-.292-.594-.494q-1.234-.598-2.546-.916q-1.31-.319-2.646-.319q-1.335 0-2.646.319q-1.312.318-2.546.916q-.38.202-.594.494Q6 16.637 6 16.97zm6 0"/></svg>',
+                    name: 'John Doe',
+                    link: '/',
+                    // routeName: 'John'
+                },
+                {
+                    icon: '<svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 24 24"><path fill="#D9D9D9" d="M7 6V5q0-.825.588-1.412T9 3h6q.825 0 1.413.588T17 5v1h.7q.6 0 1.088.338t.712.862l2.35 5.4q.075.2.113.4t.037.4V18q0 .825-.587 1.413T20 20H4q-.825 0-1.412-.587T2 18v-4.6q0-.2.038-.4t.112-.4L4.5 7.2q.225-.525.713-.863T6.3 6zm2 0h6V5H9zm-2 6v-1h2v1h6v-1h2v1h2.4l-1.7-4H6.3l-1.7 4zm0 2H4v4h16v-4h-3v1h-2v-1H9v1H7zm5 0"/></svg>',
+                    name: 'Log Out',
+                    link: '/',
+                    // routeName: ''
+                }
             ]
         };
     },
-    components: { RouterLink }
+    components: { RouterLink },
 })
 </script>
 
 <style scoped>
 .active{
-    background-color: #4B2473;
+    background-color: white;
 }
 .activeLink{
-    color: white;
+    color: #622C98;
 }
 </style>
