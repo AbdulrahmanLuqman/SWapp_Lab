@@ -6,16 +6,16 @@
             <div class="space-y-4"> 
                 <nav v-for="navLink in navLinks">
                     <RouterLink :to="navLink.link" class="w-fit focus:outline-none focus:bg-[#4B2473] flex gap-[10px] items-center p-2 rounded-r-md hover:bg-[#4B2473]" :class="{ 'active' : $route.name === navLink.routeName}">
-                        <div class="text-white" v-html="navLink.icon"></div>
-                        <p class="text-[#D9D9D9] text-lg" :class="{ 'activeLink' : $route.name === navLink.routeName}">{{ navLink.name }}</p>
+                        <div @click="$emit('isNavTrue')" class="text-white" v-html="navLink.icon"></div>
+                        <p @click="$emit('isNavTrue')" class="text-[#D9D9D9] text-lg relative z-[999]" :class="{ 'activeLink' : $route.name === navLink.routeName}">{{ navLink.name }}</p>
                     </RouterLink>
                 </nav>
             </div>
             <div>
                 <nav v-for="account in accounts">
                         <RouterLink  :to="account.link" class="w-fit focus:outline-none focus:bg-[#4B2473] flex gap-[10px] items-center p-2 rounded-r-md hover:bg-[#4B2473]">
-                            <div class="text-white" v-html="account.icon"></div>
-                            <p class="text-[#D9D9D9] text-lg">{{ account.name }}</p>
+                            <div @click="$emit('isNavTrue')" class="text-white" v-html="account.icon"></div>
+                            <p @click="$emit('isNavTrue')" class="text-[#D9D9D9] text-lg">{{ account.name }}</p>
                         </RouterLink>
                 </nav>
             </div>
@@ -23,7 +23,7 @@
 
 
 
-        <svg class="absolute top-0 right-0 z-[999]" width="176" height="798" viewBox="0 0 176 798" fill="none" xmlns="http://www.w3.org/2000/svg"><rect x="-1" y="24.3574" width="356" height="776.278" rx="24" transform="rotate(-4.08454 -1 24.3574)" fill="white"/></svg>
+        <svg class="absolute top-0 right-0 z-[800]" width="176" height="798" viewBox="0 0 176 798" fill="none" xmlns="http://www.w3.org/2000/svg"><rect x="-1" y="24.3574" width="356" height="776.278" rx="24" transform="rotate(-4.08454 -1 24.3574)" fill="white"/></svg>
 
         <svg class="absolute top-20 right-20" width="211" height="728" viewBox="0 0 211 728" fill="none" xmlns="http://www.w3.org/2000/svg"><rect x="-1" y="24.3574" width="356" height="707" rx="24" transform="rotate(-4.08454 -1 24.3574)" fill="#3A1560"/></svg>
 
