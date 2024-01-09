@@ -1,12 +1,12 @@
 import { createRouter, createWebHistory } from 'vue-router'
 import HomeView from '../views/HomeView.vue'
-import ServiceProfile from '../components/ServicesProfile.vue'
+import Log from '../components/Log.vue'
 import YoungPersonProfile from '../components/YoungPerson.vue'
-import Reports from '../components/Reports.vue'
+import Incidents from '../components/Incidents.vue'
 import TrainingHub from '../components/TrainingHub.vue'
 import Policies from '../components/Policies.vue'
 import SwProfile from '../components/SwProfile.vue'
-import TimeSheet from '../components/TimeSheet.vue'
+import Notification from '../components/Notification.vue'
 import NotFoundPage from '../components/NotFoundPage.vue'
 
 const router = createRouter({
@@ -21,7 +21,7 @@ const router = createRouter({
         {
         path: '/',
         name: '',
-        component: ServiceProfile,
+        component: Log,
         },
         {
           path: '/yp-profile',
@@ -29,9 +29,9 @@ const router = createRouter({
           component: YoungPersonProfile,
         },
         {
-          path: '/reports',
-          name: 'Reports',
-          component: Reports,
+          path: '/incident',
+          name: 'Incidents',
+          component: Incidents,
         },
         {
           path: '/training-hub',
@@ -49,9 +49,9 @@ const router = createRouter({
           component: SwProfile,
         },
         {
-          path: '/time-sheet',
-          name: 'TimeSheet',
-          component: TimeSheet,
+          path: '/notifications',
+          name: 'Notification',
+          component: Notification,
         },
         {
           path: '/:catchAll(.*)',
