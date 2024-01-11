@@ -143,12 +143,12 @@
                 // isNavtrue: store().$state.isNavtrue,
                 // staffName: ,
                 name: 'Jonathan D',
-                // date: '',
-                // time:'',
-                // staffName: '',
-                // clientsName: '',
-                // typeOfIncident:'',
-                // description: '',
+                date: '',
+                time:'',
+                staffName: '',
+                clientsName: '',
+                typeOfIncident:'',
+                description: '',
                 stores: store(),
                 isLoading: false,
                 isEmpty: false,
@@ -170,7 +170,7 @@
                         this.isEmpty= false
                     }, 3000);
                     // this.logResult = true
-                    this.$router.push("/log-result")
+                    // this.$router.push("/log-result")
 
 
                     // console.log(store().$state.money)
