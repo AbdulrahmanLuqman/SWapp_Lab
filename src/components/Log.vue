@@ -29,7 +29,7 @@
             </div>
         </div>
     </section> -->
-    <section class="p-6 max-[364px]:p-4 w-[350px] max-[398px]:w-full">
+    <section v-if="!logResult" class="p-6 max-[364px]:p-4 w-[350px] max-[398px]:w-full">
         <form @submit.prevent="submit" class="space-y-4 relative"> <!-- @submit.prevent="submit" -->
             <div class="flex justify-between">
                 <div class="flex flex-col gap-2 w-fit">
@@ -43,7 +43,7 @@
             </div>
             <div class="flex flex-col gap-2 w-full">
                     <label class="font-semibold" for="staffName">Staff Name</label>
-                    <input class="border p-2 rounded-md outline-none hover:border-[#622C98] focus:border-2 focus:border-[#622C98]" type="text" name="staffName" id="staffName" v-model="staffName">
+                    <input class="border p-2 rounded-md outline-none hover:border-[#622C98] focus:border-2 focus:border-[#622C98]" type="text" name="staffName" id="staffName" v-model="stores.$state.staffName">
             </div>
             <div class="flex flex-col gap-2 w-full">
                     <label class="font-semibold" for="clientsName">Client's Name</label>
@@ -88,12 +88,52 @@
         </form>
     </section>
 
+<!-- 
+    <div v-else class="overflow-x-auto">
+            <div class="relative min-w-[800px]"> -->
+                <!-- Loading State -->
+                <!-- <div>
+                    <table class="w-full bg-gray-100">
+                        <thead class="bg-[#622C98] text-white h-[8vh]">
+                            <th>S/N</th>
+                            <th>Date</th>
+                            <th>Time</th>
+                            <th>Staff Name</th>
+                            <th>Client's Name</th>
+                            <th>Type of Incident</th>
+                            <th>Descriptions</th>
+                            <th>Action</th>
+                        </thead>
+                        <tbody>
+                            <tr class="text-center h-[7vh] text-[17px] border border-gray-300">
+                                <td>1</td>
+                                <td>2022-3-12</td>
+                                <td>12:00pm</td>
+                                <td>Abdulrahman</td>
+                                <td>Sodiq</td>
+                                <td>nothing much.</td>
+                                <td>He beat me</td>
+                                <td>
+                                    <div class="flex justify-center relative z-1 top-0 items-center space-x-4">
+                                        <div title="delete">
+                                            <svg xmlns="http://www.w3.org/2000/svg" class="text-red-600 cursor-pointer" width="25" height="25" viewBox="0 0 24 24"><path fill="currentColor" d="M7 21q-.825 0-1.413-.588T5 19V6q-.425 0-.713-.288T4 5q0-.425.288-.713T5 4h4q0-.425.288-.713T10 3h4q.425 0 .713.288T15 4h4q.425 0 .713.288T20 5q0 .425-.288.713T19 6v13q0 .825-.588 1.413T17 21H7Zm2-5q0 .425.288.713T10 17q.425 0 .713-.288T11 16V9q0-.425-.288-.713T10 8q-.425 0-.713.288T9 9v7Zm4 0q0 .425.288.713T14 17q.425 0 .713-.288T15 16V9q0-.425-.288-.713T14 8q-.425 0-.713.288T13 9v7Z"/></svg>
+                                        </div>
+                                    </div>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+    </div>  -->
+
 
 </template>
  
 <script>
     import { defineComponent } from 'vue'
     import InputField from '../components/InputField.vue'
+    import store from '../stores/counter'
     export default defineComponent({
         components: {
             InputField
@@ -101,16 +141,19 @@
         data(){
             return{
                 // isNavtrue: store().$state.isNavtrue,
+                // staffName: ,
                 name: 'Jonathan D',
-                date: '',
-                time:'',
-                staffName: '',
-                clientsName: '',
-                typeOfIncident:'',
-                description: '',
+                // date: '',
+                // time:'',
+                // staffName: '',
+                // clientsName: '',
+                // typeOfIncident:'',
+                // description: '',
+                stores: store(),
                 isLoading: false,
                 isEmpty: false,
-                isNotEmpty: false
+                isNotEmpty: false,
+                logResult: false
             }
         },
         methods: {
@@ -126,9 +169,18 @@
                     setTimeout(() => {
                         this.isEmpty= false
                     }, 3000);
+                    // this.logResult = true
+                    this.$router.push("/log-result")
 
+
+                    // console.log(store().$state.money)
                 }else{
-                    this.isNotEmpty = true
+                    setTimeout(() => {
+                        this.isLoading = false
+                    }, 500);
+                    setInterval(() => {
+                        this.isNotEmpty = true
+                    }, 1000);
                     setTimeout(() => {
                         this.isNotEmpty = false
                         this.date= '',
@@ -139,9 +191,12 @@
                         this.description= ''
                     }, 1500);
 
+
+
                     setTimeout(() => {
-                        this.isLoading = false
-                    }, 2000);
+                        this.$router.push("/log-result")
+                        // this.logResult = true
+                    }, 2100);
                 }
             },
         }
