@@ -43,7 +43,7 @@
             </div>
             <div class="flex flex-col gap-2 w-full">
                     <label class="font-semibold" for="staffName">Staff Name</label>
-                    <input class="border p-2 rounded-md outline-none hover:border-[#622C98] focus:border-2 focus:border-[#622C98]" type="text" name="staffName" id="staffName" v-model="stores.$state.staffName">
+                    <input class="border p-2 rounded-md outline-none hover:border-[#622C98] focus:border-2 focus:border-[#622C98]" type="text" name="staffName" id="staffName" v-model="staffName">
             </div>
             <div class="flex flex-col gap-2 w-full">
                     <label class="font-semibold" for="clientsName">Client's Name</label>
@@ -62,6 +62,32 @@
             <div class="flex flex-col gap-2 w-full">
                     <label class="font-semibold" for="description">Descriptions</label>
                     <textarea class="border p-2 rounded-md outline-none" type="text" name="description" id="description" v-model="description"></textarea>
+            </div>
+            <div class="flex flex-col gap-2 w-full">
+                <label class="font-semibold" for="audio">Upload voice</label>
+                <div class="flex items-center border p-2 rounded-md gap-4">
+                    <div class="flex items-center gap-2">
+                        <div class="bg-green-200 p-[2px] rounded-[50%]"><svg class="text-green-500" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24"><path fill="currentColor" d="M19 11.975q0-2.075-1.1-3.787t-2.95-2.563q-.375-.175-.55-.537t-.05-.738q.15-.4.538-.575t.787 0Q18.1 4.85 19.55 7.063T21 11.974q0 2.7-1.45 4.913t-3.875 3.287q-.4.175-.788 0t-.537-.575q-.125-.375.05-.737t.55-.538q1.85-.85 2.95-2.562t1.1-3.788M7 15H4q-.425 0-.712-.288T3 14v-4q0-.425.288-.712T4 9h3l3.3-3.3q.475-.475 1.088-.213t.612.938v11.15q0 .675-.612.938T10.3 18.3zm9.5-3q0 1.05-.475 1.988t-1.25 1.537q-.25.15-.513.013T14 15.1V8.85q0-.3.263-.437t.512.012q.775.625 1.25 1.575t.475 2"/></svg></div>
+                        <div>
+                            <p class="text-sm font-semibold">Upload voice note</p>
+                            <p class="text-[12px] text-gray-500">The size should not be larger than 5mb</p>
+                        </div>
+                    </div>
+                    <div class="cursor-pointer bg-[#622C98] text-white font-semibold py-1 px-2 rounded-md text-sm">Upload</div>
+                </div>
+            </div>
+            <div class="flex flex-col gap-2 w-full">
+                <label class="font-semibold" for="audio">Upload Image</label>
+                <div class="flex items-center border p-2 rounded-md gap-4">
+                    <div class="flex items-center gap-2">
+                        <div class="bg-purple-200 p-[2px] rounded-[50%]"><svg class="text-purple-500" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24"><path fill="currentColor" d="M5 21q-.825 0-1.412-.587T3 19V5q0-.825.588-1.412T5 3h8q.425 0 .713.288T14 4q0 .425-.288.713T13 5H5v14h14v-8q0-.425.288-.712T20 10q.425 0 .713.288T21 11v8q0 .825-.587 1.413T19 21zM17 7h-1q-.425 0-.712-.288T15 6q0-.425.288-.712T16 5h1V4q0-.425.288-.712T18 3q.425 0 .713.288T19 4v1h1q.425 0 .713.288T21 6q0 .425-.288.713T20 7h-1v1q0 .425-.288.713T18 9q-.425 0-.712-.288T17 8zm-5.75 9L9.4 13.525q-.15-.2-.4-.2t-.4.2l-2 2.675q-.2.25-.05.525T7 17h10q.3 0 .45-.275t-.05-.525l-2.75-3.675q-.15-.2-.4-.2t-.4.2zm.75-4"/></svg></div>
+                        <div>
+                            <p class="text-sm font-semibold">Upload voice note</p>
+                            <p class="text-[12px] text-gray-500">The size should not be larger than 5mb</p>
+                        </div>
+                    </div>
+                    <div class="cursor-pointer bg-[#622C98] text-white font-semibold py-1 px-2 rounded-md text-sm">Upload</div>
+                </div>
             </div>
             <div class="flex gap-4">
                 <input class="w-full bg-[#622C98] p-[2px] rounded-md text-white font-semibold cursor-pointer hover:bg-[#4B2473]" type="reset" value="Reset">
@@ -149,7 +175,7 @@
                 clientsName: '',
                 typeOfIncident:'',
                 description: '',
-                stores: store(),
+                // stores: store(),
                 isLoading: false,
                 isEmpty: false,
                 isNotEmpty: false,
